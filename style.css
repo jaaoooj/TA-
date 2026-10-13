@@ -1,263 +1,494 @@
-/* 全局重置與變數 */
+
+
+
+
+/* ===================================
+   全域基本設定 (Global Styles)
+   =================================== */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-:root {
-    --primary-color: #d90429;  /* 活力紅 */
-    --dark-color: #111827;     /* 深色字體與背景 */
-    --gray-light: #f9fafb;     /* 淺灰區塊 */
-    --border-color: #e5e7eb;   /* 邊框顏色 */
-    --text-muted: #6b7280;     /* 輔助灰字 */
+    box-sizing: border-box;
 }
 
 body {
-    color: var(--dark-color);
-    background-color: #ffffff;
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: #FAF9F6; /* 溫和奶白色背景 */
+    color: #2C2C2C;
     line-height: 1.6;
 }
 
-/* 1. 頁首（品牌、導覽與價值主張） */
-.header {
-    border-bottom: 1px solid var(--border-color);
-    background-color: #ffffff;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.header-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 1.2rem 1.5rem;
+ul {
+    list-style: none;
+}
+
+/* ===================================
+   頁首與導覽列 (Navbar)
+   =================================== */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    padding: 20px 50px;
+    background-color: #FFFFFF;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
 
-.brand-logo {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--primary-color);
-    letter-spacing: 1px;
-    text-decoration: none;
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
 .nav-links {
     display: flex;
-    list-style: none;
-    gap: 1.5rem;
+    gap: 30px;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: var(--dark-color);
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: color 0.2s;
+    font-size: 15px;
+    font-weight: 400;
+    color: #555555;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--primary-color);
+    color: #000000;
 }
 
-/* 價值主張條 (Value Proposition Bar) */
-.value-prop {
-    background-color: var(--dark-color);
-    color: #ffffff;
+.nav-icons {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.cart-count {
+    font-weight: 700;
+}
+
+/* ===================================
+   主視覺 Banner (Hero Section)
+   =================================== */
+.hero-section {
+    height: 70vh;
+    background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('images/03.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 0.75rem 1rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    padding: 0 20px;
 }
 
-/* 通用區塊容器 */
+.hero-content .subtitle {
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.hero-content h1 {
+    font-size: 42px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.hero-content .description {
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 36px;
+    background-color: #FFFFFF;
+    color: #111111;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #111111;
+    color: #FFFFFF;
+}
+
+/* ===================================
+   商品列表 (Product Grid)
+   =================================== */
 .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
 }
 
 .section-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    border-left: 4px solid var(--primary-color);
-    padding-left: 0.75rem;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-/* 2. 主要內容（商品圖、價格與尺寸） */
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.section-title p {
+    color: #888888;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
 }
 
 .product-card {
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .product-image {
+    position: relative;
     width: 100%;
-    height: 240px;
+    aspect-ratio: 4 / 5; /* 固定圖片長寬比，陳列更整齊 */
+    overflow: hidden;
+    background-color: #F0F0F0;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    background-color: #f3f4f6;
+    transition: transform 0.5s ease;
 }
 
-.product-details {
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    flex-grow: 1;
+.product-card:hover .product-image img {
+    transform: scale(1.05); /* 滑鼠懸停縮放效果 */
 }
 
-.product-title {
-    font-size: 1.15rem;
-    font-weight: 700;
+.tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #111111;
+    color: #FFFFFF;
+    font-size: 11px;
+    padding: 4px 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.product-price {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--primary-color);
+.product-info {
+    padding: 20px;
 }
 
-.size-selector {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+.product-info .category {
+    font-size: 12px;
+    color: #999999;
+    display: block;
+    margin-bottom: 5px;
 }
 
-.size-label {
-    font-size: 0.85rem;
+.product-name {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.price {
+    font-size: 15px;
     font-weight: 600;
-    color: var(--text-muted);
+    color: #111111;
 }
 
-.size-options {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.size-btn {
-    border: 1px solid var(--border-color);
-    background: #ffffff;
-    padding: 0.3rem 0.7rem;
-    font-size: 0.85rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.size-btn:hover {
-    border-color: var(--dark-color);
-}
-
-.size-btn.active {
-    background-color: var(--dark-color);
-    color: #ffffff;
-    border-color: var(--dark-color);
-}
-
-.add-to-cart {
-    margin-top: auto;
-    width: 100%;
-    padding: 0.75rem;
-    background-color: var(--dark-color);
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.add-to-cart:hover {
-    background-color: var(--primary-color);
-}
-
-/* 3. 輔助資訊（配送說明與常見問題） */
-.info-section {
-    background-color: var(--gray-light);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-}
-
-.info-box p {
-    margin-bottom: 0.75rem;
-    color: #374151;
-    font-size: 0.95rem;
-}
-
-.faq-item {
-    margin-bottom: 1rem;
-}
-
-.faq-question {
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: var(--dark-color);
-}
-
-.faq-answer {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-/* 4. 頁尾（教學用途與素材來源） */
-.footer {
-    background-color: var(--dark-color);
-    color: #9ca3af;
-    padding: 2.5rem 1.5rem;
-    font-size: 0.85rem;
+/* ===================================
+   關於我們 (About Section)
+   =================================== */
+.about-section {
+    background-color: #EFECE6;
+    padding: 80px 20px;
     text-align: center;
 }
 
-.footer-content {
-    max-width: 800px;
+.about-content {
+    max-width: 600px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
 }
 
-.footer a {
-    color: #ffffff;
-    text-decoration: underline;
+.about-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
-/* 響應式微調 (手機版) */
-@media (max-width: 600px) {
-    .header-container {
+.about-content p {
+    color: #666666;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ===================================
+   頁尾 (Footer)
+   =================================== */
+footer {
+    background-color: #111111;
+    color: #888888;
+    text-align: center;
+    padding: 30px;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+/* ===================================
+   響應式設計 (Responsive Design)
+   =================================== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
         flex-direction: column;
-        align-items: flex-start;
+        gap: 15px;
     }
-    .nav-links {
-        gap: 1rem;
+
+    .hero-content h1 {
+        font-size: 30px;
     }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+    }
+}
+/* ===================================
+   商品加入購物車按鈕樣式
+   =================================== */
+.add-to-cart-btn {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 0;
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
+}
+
+.add-to-cart-btn:active {
+    transform: translateY(0);
+}
+
+/* ===================================
+   藍色小精靈特效彈窗樣式 (畫面中央懸浮)
+   =================================== */
+.sprite-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* 加上 .show 類別後顯示並淡入 */
+.sprite-popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sprite-card {
+    background-color: #FFFFFF;
+    padding: 35px 45px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.8) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sprite-popup-overlay.show .sprite-card {
+    transform: scale(1) translateY(0);
+}
+
+.sprite-avatar {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    animation: floatAnim 1.5s ease-in-out infinite alternate;
+}
+
+.gift-box {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    font-size: 30px;
+    animation: bounceGift 0.8s ease infinite alternate;
+}
+
+.sprite-card h3 {
+    font-size: 20px;
+    color: #111111;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.sprite-card p {
+    font-size: 14px;
+    color: #666666;
+}
+
+/* 小精靈浮動動畫 */
+@keyframes floatAnim {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-8px); }
+}
+
+/* 禮物盒彈跳動畫 */
+@keyframes bounceGift {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2) rotate(8deg); }
+}
+/* ===================================
+   商品加入購物車按鈕樣式
+   =================================== */
+.add-to-cart-btn {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 0;
+    background-color: #111111;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
+}
+
+.add-to-cart-btn:active {
+    transform: translateY(0);
+}
+
+/* ===================================
+   藍色小精靈特效彈窗樣式 (絕對置中)
+   =================================== */
+.sprite-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* 當加上 .active 時顯示並浮現 */
+.sprite-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sprite-card {
+    background-color: #FFFFFF;
+    padding: 35px 45px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sprite-popup-overlay.active .sprite-card {
+    transform: scale(1);
+}
+
+.sprite-avatar {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    animation: floatAnim 1.5s ease-in-out infinite alternate;
+}
+
+.gift-box {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    font-size: 30px;
+    animation: bounceGift 0.8s ease infinite alternate;
+}
+
+.sprite-card h3 {
+    font-size: 20px;
+    color: #111111;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.sprite-card p {
+    font-size: 14px;
+    color: #666666;
+}
+
+/* 動效定義 */
+@keyframes floatAnim {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-8px); }
+}
+
+@keyframes bounceGift {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2) rotate(8deg); }
 }
